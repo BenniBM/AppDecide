@@ -29,7 +29,7 @@ export default defineConfig({
                 name: "AppDecide",
                 short_name: "AppDecide",
                 description: "A tool to help you decide on the best development strategy for your next project.",
-                theme_color: "#fff",
+                theme_color: "#000",
                 background_color: "#000",
                 display: "standalone",
                 icons: [
