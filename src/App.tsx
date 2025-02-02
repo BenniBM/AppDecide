@@ -79,17 +79,17 @@ function App() {
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                            <div className="p-6 rounded-lg border border-gray-200 text-center">
+                            <div className="p-6 rounded-lg border-gray-200 text-center">
                                 <Smartphone className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
                                 <h3 className="font-semibold text-gray-800">Native</h3>
                                 <p className="text-sm text-gray-600 mt-2">Platform-specific development</p>
                             </div>
-                            <div className="p-6 rounded-lg border border-gray-200 text-center">
+                            <div className="p-6 rounded-lg border-gray-200 text-center">
                                 <Layers className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
                                 <h3 className="font-semibold text-gray-800">Cross-Platform</h3>
                                 <p className="text-sm text-gray-600 mt-2">Single codebase, multiple platforms</p>
                             </div>
-                            <div className="p-6 rounded-lg border border-gray-200 text-center">
+                            <div className="p-6 rounded-lg border-gray-200 text-center">
                                 <Globe2 className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
                                 <h3 className="font-semibold text-gray-800">Web App</h3>
                                 <p className="text-sm text-gray-600 mt-2">Browser-based solution</p>
@@ -136,9 +136,9 @@ function App() {
                                     <button
                                         key={index}
                                         onClick={() => handleAnswer(index)}
-                                        className="w-full text-left p-4 rounded-lg border border-gray-200 hover:border-indigo-500 hover:bg-indigo-50 transition-all duration-200 flex items-center justify-between group">
+                                        className="w-full text-left p-4 rounded-lg border border-gray-200 transition-all duration-200 flex items-center justify-between group">
                                         <span>{option.text}</span>
-                                        <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-colors" />
+                                        <ArrowRight className="w-5 h-5 text-gray-400 transition-colors" />
                                     </button>
                                 ))}
                             </div>
