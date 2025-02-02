@@ -169,6 +169,12 @@ function App() {
                             className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">
                             Start Assessment
                         </button>
+                        {/*  put a divider here */}
+                        <div className="border-t border-gray-200 my-6"></div>
+                        {/* Put a link to github and impressum here */}
+                        <div className="text-center font-bold text-sm text-slate-500">
+                            <a href="/impressum.html">Impressum</a> - <a href="https://github.com/BenniBM/AppDecide">Github Project</a>
+                        </div>
                     </div>
                 </div>
             </div>
