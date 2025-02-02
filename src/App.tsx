@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ArrowRight, Smartphone, Layers, Globe2 } from "lucide-react";
 import { questions } from "./data/questions";
 import type { Strategy, StrategyType } from "./types";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./components/ui/accordion";
 
 function App() {
     const [started, setStarted] = useState(false);
@@ -110,7 +111,7 @@ function App() {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-0 md:p-6">
             <div className="max-w-2xl mx-auto">
-                <div className="bg-white rounded-none md:rounded-xl min-h-screen md:h-auto shadow-lg p-8">
+                <div className="bg-white rounded-none md:rounded-xl min-h-screen md:min-h-full shadow-lg p-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-2">Mobile Development Advisor</h1>
 
                     {!showResults ? (
@@ -161,17 +162,22 @@ function App() {
                                                 style={{ width: `${strategy.score}%` }}></div>
                                         </div>
                                         <div className="pt-4 border-t border-gray-100">
-                                            <h4 className="font-medium text-gray-800 mb-2">Key Considerations:</h4>
+                                            <h4 className="font-bold text-gray-800 text-md mb-2">Questions</h4>
                                             <ul className="space-y-3">
-                                                {strategy.criticalAnswers.map((answer, i) => (
-                                                    <li key={i} className="text-sm text-gray-600">
-                                                        <span className="font-medium">{answer.question}:</span>
-                                                        <br />
-                                                        You chose: "{answer.answer}"
-                                                        <br />
-                                                        <span className="italic">{answer.reasoning}</span>
-                                                    </li>
-                                                ))}
+                                                <Accordion type="single" collapsible>
+                                                    {strategy.criticalAnswers.map((answer, i) => (
+                                                        <li key={i} className="text-sm text-gray-600">
+                                                            <AccordionItem value={i.toString()}>
+                                                                <AccordionTrigger className="font-bold">{answer.question}</AccordionTrigger>
+                                                                <AccordionContent>
+                                                                    <span className="font-bold">You chose:</span> "{answer.answer}"
+                                                                    <br />
+                                                                    <span className="italic">{answer.reasoning}</span>
+                                                                </AccordionContent>
+                                                            </AccordionItem>
+                                                        </li>
+                                                    ))}
+                                                </Accordion>
                                             </ul>
                                         </div>
                                     </div>
