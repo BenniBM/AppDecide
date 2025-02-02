@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Smartphone, Layers, Globe2 } from "lucide-react";
 import { questions } from "./data/questions";
 import type { Strategy, StrategyType } from "./types";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./components/ui/accordion";
+import Confetti from "react-canvas-confetti/dist/presets/realistic";
+import { TConductorInstance, TPresetInstanceProps } from "react-canvas-confetti/dist/types";
 
 function App() {
     const [started, setStarted] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Record<string, number>>({});
     const [showResults, setShowResults] = useState(false);
+    const confettiRef = useRef<TConductorInstance | null>(null);
 
     const calculateScores = (): Strategy[] => {
         const totalWeights = questions.reduce((sum) => sum + 8, 0);
@@ -55,6 +58,7 @@ function App() {
             setCurrentQuestion((prev) => prev + 1);
         } else {
             setShowResults(true);
+            triggerConfetti();
         }
     };
 
@@ -63,6 +67,18 @@ function App() {
         setCurrentQuestion(0);
         setAnswers({});
         setShowResults(false);
+    };
+
+    const triggerConfetti = () => {
+        confettiRef.current?.shoot();
+    };
+
+    const handleConfettiInit: TPresetInstanceProps["onInit"] = ({ conductor }) => {
+        confettiRef.current = conductor;
+
+        setTimeout(() => {
+            triggerConfetti();
+        }, 500);
     };
 
     const currentQuestionData = questions[currentQuestion];
@@ -146,8 +162,8 @@ function App() {
                         </div>
                     ) : (
                         <div className="space-y-6">
+                            <Confetti onInit={handleConfettiInit} width={window.innerWidth} height={window.innerHeight}></Confetti>
                             <h2 className="text-2xl font-semibold text-gray-800 mb-6">Recommended Development Strategies</h2>
-
                             {calculateScores()
                                 .sort((a, b) => b.score - a.score)
                                 .map((strategy, index) => (
