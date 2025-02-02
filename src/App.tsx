@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { ArrowRight, Smartphone, Layers, Globe2 } from "lucide-react";
+import { ArrowRight, Smartphone, Layers, Globe2, Download, Eye } from "lucide-react";
 import { questions } from "./data/questions";
 import type { Strategy, StrategyType } from "./types";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./components/ui/accordion";
@@ -29,7 +29,9 @@ function App() {
 
     const handleInstallClick = () => {
         if (deferredPrompt) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (deferredPrompt as any).prompt();
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (deferredPrompt as any).userChoice.then(() => {
                 setDeferredPrompt(null);
             });
@@ -104,6 +106,15 @@ function App() {
         }, 500);
     };
 
+    const handleDownloadThesis = () => {
+        const link = document.createElement("a");
+        link.href = `Bachelor_Arbeit.pdf`;
+        link.download = "Bachelor_Arbeit.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     const currentQuestionData = questions[currentQuestion];
 
     if (!started) {
@@ -113,17 +124,26 @@ function App() {
                     <div className="bg-white rounded-none md:rounded-xl shadow-lg p-8">
                         <h1 className="text-3xl font-bold text-gray-800 mb-4 flex items-center gap-2">Mobile Development Advisor</h1>
 
-                        {deferredPrompt && (
+                        <div className={`mb-8 grid ${deferredPrompt ? "grid-cols-2 gap-3" : "grid-cols-1"}`}>
+                            {deferredPrompt && (
+                                <button
+                                    onClick={handleInstallClick}
+                                    className="w-full flex items-center justify-center bg-slate-900 font-bold text-white py-3 rounded-lg hover:bg-slate-800 transition-colors mt-4">
+                                    <Download className="w-4 h-4 mr-2" />
+                                    Install App
+                                </button>
+                            )}
                             <button
-                                onClick={handleInstallClick}
-                                className="w-full mb-8 bg-slate-900 font-bold text-white py-3 rounded-lg hover:bg-slate-800 transition-colors mt-4">
-                                Install App
+                                onClick={handleDownloadThesis}
+                                className="w-full flex items-center justify-center border border-slate-950 font-bold py-3 rounded-lg hover:bg-slate-50 transition-colors mt-4">
+                                <Eye className="w-4 h-4 mr-2" />
+                                View Thesis
                             </button>
-                        )}
+                        </div>
 
                         <p className="text-gray-600 mb-8">
                             Answer a few questions about your mobile app requirements, and we'll help you determine the best development strategy
-                            between:
+                            between the available options <br></br> based on the research and findings from my bachelor thesis.
                         </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
