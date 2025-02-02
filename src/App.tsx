@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowRight, Smartphone, Layers, Globe2 } from "lucide-react";
 import { questions } from "./data/questions";
 import type { Strategy, StrategyType } from "./types";
@@ -12,6 +12,29 @@ function App() {
     const [answers, setAnswers] = useState<Record<string, number>>({});
     const [showResults, setShowResults] = useState(false);
     const confettiRef = useRef<TConductorInstance | null>(null);
+    const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
+
+    useEffect(() => {
+        const handleBeforeInstallPrompt = (e: Event) => {
+            e.preventDefault();
+            setDeferredPrompt(e);
+        };
+
+        window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+        return () => {
+            window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+        };
+    }, []);
+
+    const handleInstallClick = () => {
+        if (deferredPrompt) {
+            (deferredPrompt as any).prompt();
+            (deferredPrompt as any).userChoice.then(() => {
+                setDeferredPrompt(null);
+            });
+        }
+    };
 
     const calculateScores = (): Strategy[] => {
         const totalWeights = questions.reduce((sum) => sum + 8, 0);
@@ -88,7 +111,15 @@ function App() {
             <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-0 md:p-6">
                 <div className="max-w-2xl mx-auto">
                     <div className="bg-white rounded-none md:rounded-xl shadow-lg p-8">
-                        <h1 className="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-2">Mobile Development Advisor</h1>
+                        <h1 className="text-3xl font-bold text-gray-800 mb-4 flex items-center gap-2">Mobile Development Advisor</h1>
+
+                        {deferredPrompt && (
+                            <button
+                                onClick={handleInstallClick}
+                                className="w-full mb-8 bg-slate-900 font-bold text-white py-3 rounded-lg hover:bg-slate-800 transition-colors mt-4">
+                                Install App
+                            </button>
+                        )}
 
                         <p className="text-gray-600 mb-8">
                             Answer a few questions about your mobile app requirements, and we'll help you determine the best development strategy
