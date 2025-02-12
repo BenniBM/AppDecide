@@ -234,31 +234,32 @@ function App() {
                                                 className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
                                                 style={{ width: `${strategy.score}%` }}></div>
                                         </div>
-                                        <div className="pt-4 border-t border-gray-100">
-                                            <h4 className="font-bold text-gray-800 text-md mb-2">Questions</h4>
-                                            <ul className="space-y-3">
-                                                <Accordion type="single" collapsible>
-                                                    {strategy.criticalAnswers.map((answer, i) => (
-                                                        <li key={i} className="text-sm text-gray-600">
-                                                            <AccordionItem value={i.toString()}>
-                                                                <AccordionTrigger className="font-bold">{answer.question}</AccordionTrigger>
-                                                                <AccordionContent>
-                                                                    <span className="font-bold">You chose:</span> "{answer.answer}"
-                                                                    <br />
-                                                                    <span className="italic">{answer.reasoning}</span>
-                                                                </AccordionContent>
-                                                            </AccordionItem>
-                                                        </li>
-                                                    ))}
-                                                </Accordion>
-                                            </ul>
-                                        </div>
                                     </div>
                                 ))}
 
+                            <div className="pt-4 mb-8 border-t border-gray-100">
+                                <h4 className="font-bold text-gray-800 text-md mb-2">Questions</h4>
+                                <ul className="space-y-3">
+                                    <Accordion type="single" collapsible>
+                                        {calculateScores()[0].criticalAnswers.map((answer, i) => (
+                                            <li key={i} className="text-sm text-gray-600">
+                                                <AccordionItem value={i.toString()}>
+                                                    <AccordionTrigger className="font-bold">{answer.question}</AccordionTrigger>
+                                                    <AccordionContent>
+                                                        <span className="font-bold">You chose:</span> "{answer.answer}"
+                                                        <br />
+                                                        <span className="font-bold">Explanation:</span>{" "}
+                                                        <span className="italic">{answer.reasoning}</span>
+                                                    </AccordionContent>
+                                                </AccordionItem>
+                                            </li>
+                                        ))}
+                                    </Accordion>
+                                </ul>
+                            </div>
                             <button
                                 onClick={handleReset}
-                                className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                                className="!mt-12 w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">
                                 Start Over
                             </button>
                         </div>
