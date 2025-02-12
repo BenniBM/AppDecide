@@ -193,46 +193,46 @@ function App() {
         <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-0 md:p-6">
             <div className="max-w-2xl mx-auto">
                 <div className="bg-white rounded-none md:rounded-xl min-h-screen md:min-h-full shadow-lg p-8">
-                    <h1 className="text-3xl font-bold text-gray-800 mb-8 flex items-center gap-2">Mobile Development Advisor</h1>
-
                     {!showResults ? (
-                        <div className="space-y-6">
-                            <div className="mb-8">
-                                <div className="flex justify-between text-sm text-gray-600 mb-2">
-                                    <span>
-                                        Question {currentQuestion + 1} of {questions.length}
-                                    </span>
-                                    <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}% Complete</span>
+                        <>
+                            <div className="space-y-6">
+                                <div className="mb-8">
+                                    <div className="flex justify-between text-sm text-gray-600 mb-2">
+                                        <span>
+                                            Question {currentQuestion + 1} of {questions.length}
+                                        </span>
+                                        <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}% Complete</span>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-2">
+                                        <div
+                                            className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+                                            style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>
+                                    </div>
                                 </div>
-                                <div className="w-full bg-gray-200 rounded-full h-2">
-                                    <div
-                                        className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                                        style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>
+
+                                <h2 className="text-xl font-semibold text-gray-800 mb-6">{currentQuestionData.text}</h2>
+
+                                <div className="space-y-3">
+                                    {currentQuestionData.options.map((option, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => handleAnswer(index)}
+                                            className="w-full text-left p-4 rounded-lg border border-gray-200 transition-all duration-200 flex items-center justify-between group">
+                                            <span>{option.text}</span>
+                                            <ArrowRight className="w-5 h-5 text-gray-400 transition-colors" />
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
-
-                            <h2 className="text-xl font-semibold text-gray-800 mb-6">{currentQuestionData.text}</h2>
-
-                            <div className="space-y-3">
-                                {currentQuestionData.options.map((option, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => handleAnswer(index)}
-                                        className="w-full text-left p-4 rounded-lg border border-gray-200 transition-all duration-200 flex items-center justify-between group">
-                                        <span>{option.text}</span>
-                                        <ArrowRight className="w-5 h-5 text-gray-400 transition-colors" />
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        </>
                     ) : (
                         <div className="space-y-6">
                             <Confetti onInit={handleConfettiInit} width={window.innerWidth} height={window.innerHeight}></Confetti>
-                            <h2 className="text-2xl font-semibold text-gray-800 mb-6">Recommended Development Strategies</h2>
+                            <h2 className="text-2xl font-semibold text-gray-800 !mt-0">Recommended Development Strategies</h2>
                             {calculateScores()
                                 .sort((a, b) => b.score - a.score)
                                 .map((strategy, index) => (
-                                    <div key={index} className="p-6 rounded-lg border border-gray-200 space-y-4">
+                                    <div key={index} className="p-5 pt-4 rounded-lg border border-gray-200 space-y-4">
                                         <div className="flex justify-between items-center">
                                             <h3 className="text-lg font-medium text-gray-800">{strategy.name}</h3>
                                             <span className="text-2xl font-bold text-indigo-600">{strategy.score}%</span>
@@ -245,8 +245,8 @@ function App() {
                                     </div>
                                 ))}
 
-                            <div className="pt-4 mb-8 border-t border-gray-100">
-                                <h4 className="font-bold text-gray-800 text-md mb-2">Questions</h4>
+                            <div className="pt-4 mb-8 !mt-10">
+                                <h2 className="font-bold text-gray-800 text-2xl mb-2">Questions</h2>
                                 <ul className="space-y-3">
                                     <Accordion type="single" collapsible>
                                         {calculateScores()[0].criticalAnswers.map((answer, i) => (
