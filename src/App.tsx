@@ -13,6 +13,7 @@ function App() {
     const [showResults, setShowResults] = useState(false);
     const confettiRef = useRef<TConductorInstance | null>(null);
     const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
+    const [doubleWeightQuestions, setDoubleWeightQuestions] = useState<Record<string, boolean>>({});
 
     useEffect(() => {
         const handleBeforeInstallPrompt = (e: Event) => {
@@ -85,6 +86,13 @@ function App() {
             setShowResults(true);
             triggerConfetti();
         }
+    };
+
+    const handleDoubleWeightToggle = () => {
+        setDoubleWeightQuestions((prev) => ({
+            ...prev,
+            [questions[currentQuestion].id]: !prev[questions[currentQuestion].id],
+        }));
     };
 
     const handleReset = () => {
@@ -262,6 +270,22 @@ function App() {
                                 className="!mt-12 w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">
                                 Start Over
                             </button>
+                        </div>
+                    )}
+                    {!showResults && (
+                        <div className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200">
+                            <div className="max-w-2xl px-0 md:px-8 mx-auto">
+                                <button
+                                    onClick={handleDoubleWeightToggle}
+                                    className={`w-full text-left p-4 max-w-2xl rounded-lg border transition-all duration-200 flex items-center justify-between group ${
+                                        doubleWeightQuestions[questions[currentQuestion].id]
+                                            ? "border-indigo-600 border-2 text-indigo-600"
+                                            : "border-gray-200 border-2"
+                                    }`}>
+                                    <span className="font-bold">2x</span>
+                                    <span className={doubleWeightQuestions[questions[currentQuestion].id] ? "font-bold" : ""}>Double Weight</span>
+                                </button>
+                            </div>
                         </div>
                     )}
                 </div>
