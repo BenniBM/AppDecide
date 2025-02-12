@@ -3,6 +3,7 @@ export interface Question {
     text: string;
     options: Option[];
     explanation: string;
+    sources?: Source[];
 }
 
 export interface Option {
@@ -13,6 +14,11 @@ export interface Option {
         webApp: number;
     };
     reasoning: string;
+}
+
+export interface Source {
+    name: string;
+    url: string;
 }
 
 export interface Strategy {

@@ -11,7 +11,7 @@ export const questions: Question[] = [
                 text: "Yes, these features are required",
                 scores: { native: 8, crossPlatform: 6, webApp: 1 },
                 reasoning:
-                    "Native development offers the best support for device-specific features, and many cross-platform solutions provide plugins to bridge the gap.",
+                    "Native development offers the best support for device-specific features, and many cross-platform solutions provide plugins to bridge the gap. Sources: https://whatwebcando.today/",
             },
             {
                 text: "No, these features are not required",
@@ -19,6 +19,7 @@ export const questions: Question[] = [
                 reasoning: "Without the need for specialized hardware access, web apps become a cost-effective and flexible option.",
             },
         ],
+        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
     {
         id: "prototypeApproach",
@@ -38,6 +39,7 @@ export const questions: Question[] = [
                     "A native approach ensures optimal performance and integration with device-specific features, albeit at a higher development cost and longer timeline.",
             },
         ],
+        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
     {
         id: "appType",
@@ -63,6 +65,7 @@ export const questions: Question[] = [
                     "For apps focused on delivering information, a web app often meets requirements without the overhead of native development.",
             },
         ],
+        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
     {
         id: "usageFrequency",
@@ -86,6 +89,7 @@ export const questions: Question[] = [
                 reasoning: "For infrequent use, the benefits of native development are less critical, making web apps a more economical option.",
             },
         ],
+        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
     {
         id: "budget",
@@ -110,5 +114,6 @@ export const questions: Question[] = [
                 reasoning: "With a higher budget, investing in a fully native application can deliver the best performance and user experience.",
             },
         ],
+        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
 ];

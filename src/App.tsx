@@ -125,6 +125,9 @@ function App() {
 
     const currentQuestionData = questions[currentQuestion];
 
+    console.log({ questions });
+    console.log({ answers });
+
     if (!started) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-0 md:p-6">
@@ -256,8 +259,22 @@ function App() {
                                                     <AccordionContent>
                                                         <span className="font-bold">You chose:</span> "{answer.answer}"
                                                         <br />
-                                                        <span className="font-bold">Explanation:</span>{" "}
+                                                        <span className="font-bold">Explanation:</span>
                                                         <span className="italic">{answer.reasoning}</span>
+                                                        <br />
+                                                        <span className="font-bold">Sources:</span>{" "}
+                                                        {questions
+                                                            .find((q) => q.text === answer.question)
+                                                            ?.sources?.map((source, i) => (
+                                                                <a
+                                                                    key={i}
+                                                                    href={source.url}
+                                                                    target="_blank"
+                                                                    rel="noreferrer"
+                                                                    className="text-indigo-600 hover:underline">
+                                                                    {source.name}
+                                                                </a>
+                                                            ))}
                                                     </AccordionContent>
                                                 </AccordionItem>
                                             </li>
