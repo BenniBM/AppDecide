@@ -9,7 +9,7 @@ export default defineConfig({
         VitePWA({
             registerType: "autoUpdate",
             workbox: {
-                globPatterns: ["**/*.{js,css,html,ico,png,svg,json,vue,txt,woff2}"],
+                globPatterns: ["**/*.{js,css,html,ico,png,svg,json,vue,txt,woff2,pdf}"],
                 // Ensure network-first strategy for API calls
                 runtimeCaching: [
                     {

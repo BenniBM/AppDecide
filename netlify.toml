@@ -2,10 +2,3 @@
   for = "/*.pdf"
   [headers.values]
     Content-Type = "application/pdf"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-  conditions = {Path = {exclude = ["/Bachelor_Arbeit.pdf"]}}
