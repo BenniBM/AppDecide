@@ -13,7 +13,6 @@ export interface Option {
         crossPlatform: number;
         webApp: number;
     };
-    reasoning: string;
 }
 
 export interface Source {

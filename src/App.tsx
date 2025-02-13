@@ -60,7 +60,7 @@ function App() {
                     return {
                         question: question.text,
                         answer: question.options[optionIndex].text,
-                        reasoning: question.options[optionIndex].reasoning,
+                        reasoning: question.explanation,
                     };
                 })
                 .filter((answer): answer is { question: string; answer: string; reasoning: string } => answer !== null);
@@ -259,7 +259,7 @@ function App() {
                                                     <AccordionContent>
                                                         <span className="font-bold">You chose:</span> "{answer.answer}"
                                                         <br />
-                                                        <span className="font-bold">Explanation:</span>
+                                                        <span className="font-bold">Explanation: </span>
                                                         <span className="italic">{answer.reasoning}</span>
                                                         <br />
                                                         <span className="font-bold">Sources:</span>{" "}
