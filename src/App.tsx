@@ -40,7 +40,7 @@ function App() {
     };
 
     const calculateScores = (): Strategy[] => {
-        const totalWeights = questions.reduce((sum) => sum + 8, 0);
+        const totalWeights = questions.reduce((sum, question) => sum + (doubleWeightQuestions[question.id] ? 16 : 8), 0);
         const strategies: StrategyType[] = ["native", "crossPlatform", "webApp"];
 
         return strategies.map((strategy) => {
@@ -48,7 +48,8 @@ function App() {
                 (Object.entries(answers).reduce((sum, [questionId, optionIndex]) => {
                     const question = questions.find((q) => q.id === questionId);
                     if (!question) return sum;
-                    return sum + question.options[optionIndex].scores[strategy];
+                    const weightFactor = doubleWeightQuestions[questionId] ? 2 : 1;
+                    return sum + question.options[optionIndex].scores[strategy] * weightFactor;
                 }, 0) /
                     totalWeights) *
                 100;
@@ -124,9 +125,6 @@ function App() {
     };
 
     const currentQuestionData = questions[currentQuestion];
-
-    console.log({ questions });
-    console.log({ answers });
 
     if (!started) {
         return (
