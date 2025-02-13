@@ -249,35 +249,47 @@ function App() {
                                 ))}
 
                             <div className="pt-4 mb-8 !mt-10">
-                                <h2 className="font-bold text-gray-800 text-2xl mb-2">Questions</h2>
+                                <h2 className="font-bold text-gray-800 text-2xl mb-6">Questions</h2>
                                 <ul className="space-y-3">
-                                    <Accordion type="single" collapsible>
+                                    <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
                                         {calculateScores()[0].criticalAnswers.map((answer, i) => (
-                                            <li key={i} className="text-sm text-gray-600">
-                                                <AccordionItem value={i.toString()}>
-                                                    <AccordionTrigger className="font-bold">{answer.question}</AccordionTrigger>
-                                                    <AccordionContent>
-                                                        <span className="font-bold">You chose:</span> "{answer.answer}"
-                                                        <br />
-                                                        <span className="font-bold">Explanation: </span>
-                                                        <span className="italic">{answer.reasoning}</span>
-                                                        <br />
-                                                        <span className="font-bold">Sources:</span>{" "}
-                                                        {questions
-                                                            .find((q) => q.text === answer.question)
-                                                            ?.sources?.map((source, i) => (
-                                                                <a
-                                                                    key={i}
-                                                                    href={source.url}
-                                                                    target="_blank"
-                                                                    rel="noreferrer"
-                                                                    className="text-indigo-600 hover:underline">
-                                                                    {source.name}
-                                                                </a>
-                                                            ))}
-                                                    </AccordionContent>
-                                                </AccordionItem>
-                                            </li>
+                                            <AccordionItem key={i} value={i.toString()} className="border rounded-lg mb-4 shadow-sm">
+                                                <AccordionTrigger className="px-4 py-3 text-md !no-underline font-semibold hover:bg-gray-50">
+                                                    {answer.question}
+                                                </AccordionTrigger>
+
+                                                <AccordionContent className="px-4 py-3 space-y-4">
+                                                    <div className="space-y-2">
+                                                        <div className="flex flex-col space-y-1">
+                                                            <span className="font-semibold text-gray-700">Your Answer:</span>
+                                                            <p className="text-gray-600 pl-2">"{answer.answer}"</p>
+                                                        </div>
+
+                                                        <div className="flex flex-col space-y-1">
+                                                            <span className="font-semibold text-gray-700">Explanation:</span>
+                                                            <p className="text-gray-600 pl-2 italic">{answer.reasoning}</p>
+                                                        </div>
+
+                                                        <div className="flex flex-col space-y-1">
+                                                            <span className="font-semibold text-gray-700">Sources:</span>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {questions
+                                                                    .find((q) => q.text === answer.question)
+                                                                    ?.sources?.map((source, i) => (
+                                                                        <a
+                                                                            key={i}
+                                                                            href={source.url}
+                                                                            target="_blank"
+                                                                            rel="noreferrer"
+                                                                            className="inline-block px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100 active:bg-indigo-200 transition-colors">
+                                                                            {source.name}
+                                                                        </a>
+                                                                    ))}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
                                         ))}
                                     </Accordion>
                                 </ul>

@@ -5,7 +5,7 @@ export const questions: Question[] = [
         id: "nativeFeatureUsage",
         text: "Do you need to use device-specific features such as contacts, NFC, Bluetooth, or SMS?",
         explanation:
-            "If your app requires integration with native device features, you may need to choose a native or cross-platform approach (assuming suitable plugins exist). If not, all development methods remain viable.",
+            "If your app requires integration with native device features, you may need to choose a native or cross-platform approach (assuming suitable plugins exist for cross-platform). If not, all development methods remain viable.",
         options: [
             {
                 text: "Yes, these features are required",
@@ -16,7 +16,7 @@ export const questions: Question[] = [
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
-        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
+        sources: [{ name: "What Web can do today", url: "https://whatwebcando.today/" }],
     },
     {
         id: "prototypeApproach",
