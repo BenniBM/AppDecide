@@ -117,7 +117,7 @@ function App() {
     const handleDownloadThesis = () => {
         const link = document.createElement("a");
         link.href = `Bachelor_Arbeit.pdf`;
-        link.download = "Bachelor_Arbeit.pdf";
+        link.target = "_blank";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -261,17 +261,17 @@ function App() {
                                                 <AccordionContent className="px-4 py-3 space-y-4">
                                                     <div className="space-y-2">
                                                         <div className="flex flex-col space-y-1">
-                                                            <span className="font-semibold text-gray-700">Your Answer:</span>
+                                                            <span className="font-semibold text-gray-700">Your Answer</span>
                                                             <p className="text-gray-600 pl-2">"{answer.answer}"</p>
                                                         </div>
 
                                                         <div className="flex flex-col space-y-1">
-                                                            <span className="font-semibold text-gray-700">Explanation:</span>
+                                                            <span className="font-semibold text-gray-700">Explanation</span>
                                                             <p className="text-gray-600 pl-2 italic">{answer.reasoning}</p>
                                                         </div>
 
                                                         <div className="flex flex-col space-y-1">
-                                                            <span className="font-semibold text-gray-700">Sources:</span>
+                                                            <span className="font-semibold text-gray-700">Sources</span>
                                                             <div className="flex flex-wrap gap-2">
                                                                 {questions
                                                                     .find((q) => q.text === answer.question)

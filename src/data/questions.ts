@@ -15,8 +15,16 @@ export const questions: Question[] = [
                 text: "No, these features are not required",
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
         ],
-        sources: [{ name: "What Web can do today", url: "https://whatwebcando.today/" }],
+        sources: [
+            { name: "What Web can do today", url: "https://whatwebcando.today/" },
+            { name: "Flutter Plugins", url: "https://pub.dev" },
+            { name: "React-Native Plugins", url: "https://reactnative.directory/" },
+        ],
     },
     {
         id: "prototypeApproach",
@@ -32,8 +40,12 @@ export const questions: Question[] = [
                 text: "Develop the full application from the start",
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
         ],
-        // Schnelligkeit belegen mit der Bachelorarbeit?
+        // Schnelligkeit belegen mit der Bachelorarbeit? Cost-Effectiveness geht auf jedenfall
         sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
     {
@@ -58,8 +70,12 @@ export const questions: Question[] = [
                 text: "Newsletter or Information-based",
                 scores: { native: 1, crossPlatform: 3, webApp: 8 },
             },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
         ],
-        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
+        sources: [{ name: "Thesis Page 18-19", url: "Bachelor_Arbeit.pdf#page=18" }],
     },
     {
         id: "usageFrequency",
@@ -78,6 +94,10 @@ export const questions: Question[] = [
             {
                 text: "Monthly or less",
                 scores: { native: 1, crossPlatform: 3, webApp: 8 },
+            },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
         sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
@@ -100,7 +120,14 @@ export const questions: Question[] = [
                 text: "€200,000 or more",
                 scores: { native: 5, crossPlatform: 5, webApp: 3 },
             },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
         ],
-        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
+        sources: [
+            { name: "Cost Comparison and Case Studys", url: "https://feedbax.ai/industry-trends/native-app-vs-cross-plattform-app-vs-pwa#header-19" },
+            { name: "Thesis Page 24-25", url: "Bachelor_Arbeit.pdf#page=24" },
+        ],
     },
 ];
