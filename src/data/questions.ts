@@ -9,7 +9,7 @@ export const questions: Question[] = [
         options: [
             {
                 text: "Yes, these features are required",
-                scores: { native: 8, crossPlatform: 6, webApp: 1 },
+                scores: { native: 8, crossPlatform: 5, webApp: 1 },
             },
             {
                 text: "No, these features are not required",
@@ -22,36 +22,41 @@ export const questions: Question[] = [
         id: "prototypeApproach",
         text: "Do you want to build a quick prototype first, or start developing the final application immediately?",
         explanation:
-            "Developing a web-based prototype can be faster and more cost-effective for validating your idea, while starting with native development provides deeper integration with device features but takes more time.",
+            "Developing a web-based or cross-platform prototype can be faster and more cost-effective for validating your idea, while starting with native development takes more time.",
         options: [
             {
-                text: "Build a web prototype for rapid validation",
-                scores: { native: 2, crossPlatform: 4, webApp: 8 },
+                text: "Build a prototype for rapid validation",
+                scores: { native: 1, crossPlatform: 5, webApp: 8 },
             },
             {
-                text: "Develop the full native application from the start",
-                scores: { native: 8, crossPlatform: 5, webApp: 1 },
+                text: "Develop the full application from the start",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
+        // Schnelligkeit belegen mit der Bachelorarbeit?
         sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
     },
     {
         id: "appType",
         text: "What type of app are you planning to create?",
         explanation:
-            "Different app types have unique requirements. Social media, banking, and finance apps often need native-level performance and security. For e-commerce or information-based apps, a mobile website might be sufficient.",
+            "Different app types have unique requirements. Social media or adjacent Apps are often build with cross-platform solutions because of the need of availability on multiple plattforms. Banking and finance apps often need native-level performance and security. For e-commerce or information-based apps, a mobile website might be sufficient.",
         options: [
             {
-                text: "Social Media, Banking, Finance, or Magazines",
+                text: "Social Media",
+                scores: { native: 5, crossPlatform: 8, webApp: 3 },
+            },
+            {
+                text: "Banking or Finance",
                 scores: { native: 8, crossPlatform: 6, webApp: 2 },
             },
             {
                 text: "E-Commerce",
-                scores: { native: 4, crossPlatform: 5, webApp: 7 },
+                scores: { native: 3, crossPlatform: 5, webApp: 8 },
             },
             {
-                text: "Information-based apps (e.g., weather, news)",
-                scores: { native: 2, crossPlatform: 4, webApp: 8 },
+                text: "Newsletter or Information-based",
+                scores: { native: 1, crossPlatform: 3, webApp: 8 },
             },
         ],
         sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
@@ -64,7 +69,7 @@ export const questions: Question[] = [
         options: [
             {
                 text: "Daily",
-                scores: { native: 8, crossPlatform: 6, webApp: 3 },
+                scores: { native: 8, crossPlatform: 5, webApp: 3 },
             },
             {
                 text: "Weekly",
@@ -72,7 +77,7 @@ export const questions: Question[] = [
             },
             {
                 text: "Monthly or less",
-                scores: { native: 2, crossPlatform: 4, webApp: 8 },
+                scores: { native: 1, crossPlatform: 3, webApp: 8 },
             },
         ],
         sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
@@ -85,15 +90,15 @@ export const questions: Question[] = [
         options: [
             {
                 text: "€5,000 - €15,000",
-                scores: { native: 2, crossPlatform: 5, webApp: 8 },
+                scores: { native: 1, crossPlatform: 5, webApp: 8 },
             },
             {
                 text: "€50,000 - €100,000",
-                scores: { native: 5, crossPlatform: 6, webApp: 4 },
+                scores: { native: 5, crossPlatform: 8, webApp: 3 },
             },
             {
                 text: "€200,000 or more",
-                scores: { native: 8, crossPlatform: 7, webApp: 3 },
+                scores: { native: 5, crossPlatform: 5, webApp: 3 },
             },
         ],
         sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
