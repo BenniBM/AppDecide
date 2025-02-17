@@ -3,13 +3,13 @@ import { Question } from "../types";
 export const questions: Question[] = [
     {
         id: "nativeFeatureUsage",
-        text: "Do you need to use device-specific features such as contacts, NFC, Bluetooth, or SMS?",
+        text: "Do you need to use the following device-specific features: Access Contacts, NFC, Bluetooth, or SMS?",
         explanation:
             "If your app requires integration with native device features, you may need to choose a native or cross-platform approach (assuming suitable plugins exist for cross-platform). If not, all development methods remain viable.",
         options: [
             {
                 text: "Yes, these features are required",
-                scores: { native: 8, crossPlatform: 5, webApp: 1 },
+                scores: { native: 8, crossPlatform: 3, webApp: 0 },
             },
             {
                 text: "No, these features are not required",
@@ -69,6 +69,7 @@ export const questions: Question[] = [
             {
                 text: "Newsletter or Information-based",
                 scores: { native: 1, crossPlatform: 3, webApp: 8 },
+                // native apps have the hurdle of needing to be installed so they are only used for apps that are used very frequently
             },
             {
                 text: "I don't know",
@@ -109,16 +110,16 @@ export const questions: Question[] = [
             "Your budget is a key factor in choosing the development approach. Native apps typically require a higher investment compared to cross-platform or web solutions.",
         options: [
             {
-                text: "€5,000 - €15,000",
+                text: "€5,000 - €50,000",
                 scores: { native: 1, crossPlatform: 5, webApp: 8 },
             },
             {
                 text: "€50,000 - €100,000",
-                scores: { native: 5, crossPlatform: 8, webApp: 3 },
+                scores: { native: 3, crossPlatform: 8, webApp: 5 },
             },
             {
-                text: "€200,000 or more",
-                scores: { native: 5, crossPlatform: 5, webApp: 3 },
+                text: "€100,000 or more",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
             {
                 text: "I don't know",
