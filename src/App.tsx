@@ -1,16 +1,18 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { ArrowRight, Smartphone, Layers, Globe2, Download, Eye } from "lucide-react";
 import { questions } from "./data/questions";
 import type { Strategy, StrategyType } from "./types";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./components/ui/accordion";
 import Confetti from "react-canvas-confetti/dist/presets/realistic";
 import { TConductorInstance, TPresetInstanceProps } from "react-canvas-confetti/dist/types";
+import { firstLetterLowerCase } from "./lib/utils";
 
 function App() {
     const [started, setStarted] = useState(false);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState<Record<string, number>>({});
     const [showResults, setShowResults] = useState(false);
+    const [selectedStrategy, setSelectedStrategy] = useState<Strategy | null>(null);
     const confettiRef = useRef<TConductorInstance | null>(null);
     const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
     const [doubleWeightQuestions, setDoubleWeightQuestions] = useState<Record<string, boolean>>({});
@@ -27,6 +29,14 @@ function App() {
             window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
         };
     }, []);
+
+    // Set initial selected strategy when showing results
+    useEffect(() => {
+        if (showResults) {
+            const scores = calculateScores().sort((a, b) => b.score - a.score);
+            setSelectedStrategy(scores[0]);
+        }
+    }, [showResults]);
 
     const handleInstallClick = () => {
         if (deferredPrompt) {
@@ -75,6 +85,27 @@ function App() {
         });
     };
 
+    const { warningCount, criticalCount } = useMemo(() => {
+        if (!selectedStrategy) return { warningCount: 0, criticalCount: 0 };
+
+        const strategyKey = firstLetterLowerCase(selectedStrategy.name.replace("-", "").replace(" ", "")) as "native" | "crossPlatform" | "webApp";
+        console.log({ strategyKey });
+        let warnings = 0;
+        let criticals = 0;
+
+        Object.entries(answers).forEach(([questionId, optionIndex]) => {
+            const question = questions.find((q) => q.id === questionId);
+            if (question) {
+                const score = question.options[optionIndex].scores[strategyKey];
+                console.log(score);
+                if (score === 0) criticals++;
+                else if (score === 1) warnings++;
+            }
+        });
+
+        return { warningCount: warnings, criticalCount: criticals };
+    }, [selectedStrategy, answers]);
+
     const handleAnswer = (optionIndex: number) => {
         setAnswers((prev) => ({
             ...prev,
@@ -101,6 +132,7 @@ function App() {
         setCurrentQuestion(0);
         setAnswers({});
         setShowResults(false);
+        setSelectedStrategy(null);
     };
 
     const triggerConfetti = () => {
@@ -233,7 +265,14 @@ function App() {
                             {calculateScores()
                                 .sort((a, b) => b.score - a.score)
                                 .map((strategy, index) => (
-                                    <div key={index} className="p-5 pt-4 rounded-lg border border-gray-200 space-y-4">
+                                    <div
+                                        key={index}
+                                        className={`p-5 pt-4 rounded-lg border space-y-4 cursor-pointer transition-all ${
+                                            selectedStrategy?.name === strategy.name
+                                                ? "border-indigo-600 bg-indigo-50"
+                                                : "border-gray-200 hover:border-indigo-300"
+                                        }`}
+                                        onClick={() => setSelectedStrategy(strategy)}>
                                         <div className="flex justify-between items-center">
                                             <h3 className="text-lg font-medium text-gray-800">{strategy.name}</h3>
                                             <span className="text-2xl font-bold text-indigo-600">{strategy.score}%</span>
@@ -247,12 +286,67 @@ function App() {
                                 ))}
 
                             <div className="pt-4 mb-8 !mt-10">
-                                <h2 className="font-bold text-gray-800 text-2xl mb-6">Questions</h2>
+                                <h2 className="font-bold text-gray-800 text-2xl mb-2">Questions</h2>
+                                {selectedStrategy && (
+                                    <div className="flex gap-4 mb-6">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                            <span className="text-sm font-medium">
+                                                {warningCount} Warning{warningCount !== 1 ? "s" : ""}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                            <span className="text-sm font-medium">
+                                                {criticalCount} Critical Issue{criticalCount !== 1 ? "s" : ""}
+                                            </span>
+                                        </div>
+                                    </div>
+                                )}
                                 <ul className="space-y-3">
                                     <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
                                         {calculateScores()[0].criticalAnswers.map((answer, i) => (
-                                            <AccordionItem key={i} value={i.toString()} className="border rounded-lg mb-4 shadow-sm">
-                                                <AccordionTrigger className="px-4 py-3 text-md !no-underline font-semibold hover:bg-gray-50">
+                                            <AccordionItem
+                                                key={i}
+                                                value={i.toString()}
+                                                className={`border rounded-lg mb-4 shadow-sm ${
+                                                    selectedStrategy &&
+                                                    (() => {
+                                                        const question = questions.find((q) => q.text === answer.question);
+                                                        const answerIndex = Object.entries(answers).find(([id]) => id === question?.id)?.[1];
+                                                        if (question && typeof answerIndex === "number") {
+                                                            const score =
+                                                                question.options[answerIndex].scores[
+                                                                    firstLetterLowerCase(selectedStrategy.name.replace("-", "").replace(" ", "")) as
+                                                                        | "native"
+                                                                        | "crossPlatform"
+                                                                        | "webApp"
+                                                                ];
+                                                            if (score === 0) return "border-red-500";
+                                                            if (score === 1) return "border-yellow-400";
+                                                        }
+                                                        return "";
+                                                    })()
+                                                }`}>
+                                                <AccordionTrigger
+                                                    className={`px-4 py-3 rounded-lg text-md !no-underline font-semibold hover:bg-gray-50 ${
+                                                        selectedStrategy &&
+                                                        (() => {
+                                                            const question = questions.find((q) => q.text === answer.question);
+                                                            const answerIndex = Object.entries(answers).find(([id]) => id === question?.id)?.[1];
+                                                            if (question && typeof answerIndex === "number") {
+                                                                const score =
+                                                                    question.options[answerIndex].scores[
+                                                                        firstLetterLowerCase(
+                                                                            selectedStrategy.name.replace("-", "").replace(" ", "")
+                                                                        ) as "native" | "crossPlatform" | "webApp"
+                                                                    ];
+                                                                if (score === 0) return "bg-red-50 hover:bg-red-100";
+                                                                if (score === 1) return "bg-yellow-50 hover:bg-yellow-100";
+                                                            }
+                                                            return "";
+                                                        })()
+                                                    }`}>
                                                     {answer.question}
                                                 </AccordionTrigger>
 
