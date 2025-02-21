@@ -1,11 +1,26 @@
 import { useRef, useState, useEffect, useMemo } from "react";
-import { ArrowRight, Smartphone, Layers, Globe2, Download, Eye } from "lucide-react";
+import { ArrowRight, Smartphone, Layers, Globe2, Download, Eye, Info } from "lucide-react";
 import { questions } from "./data/questions";
 import type { Strategy, StrategyType } from "./types";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./components/ui/accordion";
 import Confetti from "react-canvas-confetti/dist/presets/realistic";
 import { TConductorInstance, TPresetInstanceProps } from "react-canvas-confetti/dist/types";
 import { firstLetterLowerCase } from "./lib/utils";
+
+const tips: Record<StrategyType, string[]> = {
+    native: [
+        "Use platform-specific features to enhance user experience.",
+        "Optimize performance by leveraging native APIs.",
+        "Keep up with the latest updates and guidelines from the platform providers.",
+    ],
+    crossPlatform: ["Ensure consistent UI/UX across all platforms.", "Test thoroughly on all target platforms to catch platform-specific issues."],
+    webApp: [
+        // Finished good example:
+        "63% browse on mobile so focus on mobile first design",
+        "PWA and Service Worker for offline capabilities",
+        "Ensure fast load times and smooth performance.",
+    ],
+};
 
 function App() {
     const [started, setStarted] = useState(false);
@@ -284,6 +299,27 @@ function App() {
                                         </div>
                                     </div>
                                 ))}
+
+                            {selectedStrategy && (
+                                <div className="pt-4 mb-8 !mt-10">
+                                    <div className="border-2 border-blue-200 rounded-lg p-6 bg-blue-50/50">
+                                        <div className="flex items-center gap-3 mb-4">
+                                            <Info className="w-6 h-6 text-blue-600" />
+                                            <h2 className="font-bold text-gray-800 text-2xl">Tips for {selectedStrategy.name}</h2>
+                                        </div>
+                                        <ul className="list-none space-y-3">
+                                            {tips[firstLetterLowerCase(selectedStrategy.name.replace("-", "").replace(" ", "")) as StrategyType].map(
+                                                (tip, i) => (
+                                                    <li key={i} className="flex items-start gap-2 text-gray-600">
+                                                        <span className="inline-block w-2 h-2 rounded-full bg-blue-400 mt-2" />
+                                                        {tip}
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
 
                             <div className="pt-4 mb-8 !mt-10">
                                 <h2 className="font-bold text-gray-800 text-2xl mb-2">Questions</h2>
