@@ -156,7 +156,7 @@ export const questions: Question[] = [
                 scores: { native: 3, crossPlatform: 8, webApp: 5 },
             },
             {
-                text: "Native mobile development experts",
+                text: "Native mobile development",
                 scores: { native: 8, crossPlatform: 5, webApp: 5 },
             },
             {
