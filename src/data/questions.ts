@@ -1,6 +1,7 @@
 import { Question } from "../types";
 
 export const questions: Question[] = [
+    // CHECK
     {
         id: "nativeFeatureUsage",
         text: "Do you need to use the following device-specific features: Access Contacts, NFC, Bluetooth, or SMS?",
@@ -26,6 +27,7 @@ export const questions: Question[] = [
             { name: "React-Native Plugins", url: "https://reactnative.directory/" },
         ],
     },
+    // CHECK
     {
         id: "prototypeApproach",
         text: "Do you want to build a quick prototype first, or start developing the final application immediately?",
@@ -45,14 +47,20 @@ export const questions: Question[] = [
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
-        // Schnelligkeit belegen mit der Bachelorarbeit? Cost-Effectiveness geht auf jedenfall
-        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
+        sources: [
+            { name: "Thesis Page 24-25", url: "Bachelor_Arbeit.pdf#page=30" },
+            {
+                name: "Build Web App Prototype with AI",
+                url: "https://bolt.new/",
+            },
+        ],
     },
+    // CHECK
     {
         id: "appType",
         text: "What type of app are you planning to create?",
         explanation:
-            "Different app types have unique requirements. Social media or adjacent Apps are often build with cross-platform solutions because of the need of availability on multiple plattforms. Banking and finance apps often need native-level performance and security. For e-commerce or information-based apps, a mobile website might be sufficient.",
+            "Different app types have unique requirements. Social media or adjacent Apps are often build with cross-platform solutions because of the need of availability on multiple plattforms. Banking and finance apps often need native-level performance and security. For e-commerce or information-based apps, a mobile website might be sufficient, because they are not used as frequently so the hurdle of installing will be significant.",
         options: [
             {
                 text: "Social Media",
@@ -69,20 +77,20 @@ export const questions: Question[] = [
             {
                 text: "Newsletter or Information-based",
                 scores: { native: 1, crossPlatform: 3, webApp: 8 },
-                // native apps have the hurdle of needing to be installed so they are only used for apps that are used very frequently
             },
             {
                 text: "I don't know",
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
-        sources: [{ name: "Thesis Page 18-19", url: "Bachelor_Arbeit.pdf#page=18" }],
+        sources: [{ name: "Thesis Page 18-19", url: "Bachelor_Arbeit.pdf#page=25" }],
     },
+    // CHECK
     {
         id: "usageFrequency",
         text: "How frequently do you expect users to use your app?",
         explanation:
-            "The expected usage frequency impacts the required performance and responsiveness. Apps used daily may benefit from the efficiency of native solutions, while those used less frequently can opt for more flexible development approaches.",
+            "Apps used daily may benefit from the efficiency of native solutions, while those used less frequently should opt for more flexible development approaches, because the hurdle of installation can be significant.",
         options: [
             {
                 text: "Daily",
@@ -101,8 +109,9 @@ export const questions: Question[] = [
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
-        sources: [{ name: "What Web Can Do Today", url: "https://whatwebcando.today/" }],
+        sources: [{ name: "Thesis Page 19-20", url: "Bachelor_Arbeit.pdf#page=26" }],
     },
+    // CHECK
     {
         id: "budget",
         text: "What is your budget for app development?",
@@ -128,7 +137,135 @@ export const questions: Question[] = [
         ],
         sources: [
             { name: "Cost Comparison and Case Studys", url: "https://feedbax.ai/industry-trends/native-app-vs-cross-plattform-app-vs-pwa#header-19" },
-            { name: "Thesis Page 24-25", url: "Bachelor_Arbeit.pdf#page=24" },
+            { name: "Thesis Page 24-25", url: "Bachelor_Arbeit.pdf#page=30" },
+        ],
+    },
+    // CHECK
+    {
+        id: "teamExpertise",
+        text: "What is your development team's existing technical expertise?",
+        explanation:
+            "Web developers can transition faster to React Native (TypeScript/JavaScript), while Flutter requires a new language Dart which is similiar but still requires learning. Native development demands platform-specific Swift/Kotlin knowledge. With no development experience, web and cross-plattform development is the easiest to learn.",
+        options: [
+            {
+                text: "Web (JavaScript/TypeScript) background",
+                scores: { native: 2, crossPlatform: 5, webApp: 8 },
+            },
+            {
+                text: "No prior development experience",
+                scores: { native: 3, crossPlatform: 8, webApp: 5 },
+            },
+            {
+                text: "Native mobile development experts",
+                scores: { native: 8, crossPlatform: 5, webApp: 5 },
+            },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
+        ],
+        sources: [
+            {
+                name: "Thesis Page 15-16",
+                url: "Bachelor_Arbeit.pdf#page=22",
+            },
+        ],
+    },
+    // CHECK
+    {
+        id: "monetizationStrategy",
+        text: "What is your primary monetization approach?",
+        explanation:
+            "Native apps benefit from app store visibility and integrated payments (despite 15-30% fees), while web apps avoid fees but require independent marketing. Advertising works better in native apps due to higher retention rates and no ad-blockers.",
+        options: [
+            {
+                text: "App store subscriptions/in-app purchases",
+                scores: { native: 8, crossPlatform: 8, webApp: 5 },
+            },
+            {
+                text: "Advertising-based revenue",
+                scores: { native: 8, crossPlatform: 8, webApp: 5 },
+            },
+            {
+                text: "Direct payment (Paid Apps)",
+                scores: { native: 5, crossPlatform: 5, webApp: 8 },
+            },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
+        ],
+        sources: [
+            {
+                name: "Thesis Page 27-29",
+                url: "Bachelor_Arbeit.pdf#page=34",
+            },
+            {
+                name: "Google Service Fees 15-30%",
+                url: "https://support.google.com/googleplay/android-developer/answer/112622?sjid=4175626678853687051-EU",
+            },
+            {
+                name: "Apple Service Fees 15-30%",
+                url: "https://developer.apple.com/app-store/small-business-program/",
+            },
+        ],
+    },
+    // CHECK
+    {
+        id: "offlineRequirement",
+        text: "Does your application need to function offline without an internet connection?",
+        explanation:
+            "Native and hybrid apps inherently support offline access better through local storage and the fact that they are installed, while web apps require Progressive Web App (PWA) technologies like service workers to achieve comparable functionality.",
+        options: [
+            {
+                text: "Yes, offline functionality is critical",
+                scores: { native: 8, crossPlatform: 8, webApp: 3 },
+            },
+            {
+                text: "No, internet connectivity is always assumed",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
+        ],
+        sources: [
+            {
+                name: "Thesis Page 13",
+                url: "Bachelor_Arbeit.pdf#page=20",
+            },
+        ],
+    },
+    // CHECK
+    {
+        id: "updateFrequency",
+        text: "How frequently do you anticipate needing to deploy updates?",
+        explanation:
+            "Web apps allow instant updates for all users, while native and cross-plattform apps may require time-consuming app store approvals.",
+        options: [
+            {
+                text: "Frequent updates (weekly or more often)",
+                scores: { native: 1, crossPlatform: 1, webApp: 8 },
+            },
+            {
+                text: "Moderate updates (monthly)",
+                scores: { native: 5, crossPlatform: 5, webApp: 8 },
+            },
+            {
+                text: "Rare updates (quarterly or less)",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
+            {
+                text: "I don't know",
+                scores: { native: 5, crossPlatform: 5, webApp: 5 },
+            },
+        ],
+        sources: [
+            {
+                name: "Thesis Page 17",
+                url: "Bachelor_Arbeit.pdf#page=24",
+            },
         ],
     },
 ];

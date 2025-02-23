@@ -248,14 +248,14 @@ function App() {
                                 <div className="mb-8">
                                     <div className="flex justify-between text-sm text-gray-600 mb-2">
                                         <span>
-                                            Question {currentQuestion + 1} of {questions.length}
+                                            Question {currentQuestion} of {questions.length}
                                         </span>
-                                        <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}% Complete</span>
+                                        <span>{Math.round((currentQuestion / questions.length) * 100)}% Complete</span>
                                     </div>
                                     <div className="w-full bg-gray-200 rounded-full h-2">
                                         <div
                                             className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
-                                            style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}></div>
+                                            style={{ width: `${(currentQuestion / questions.length) * 100}%` }}></div>
                                     </div>
                                 </div>
 
