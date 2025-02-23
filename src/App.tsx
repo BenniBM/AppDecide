@@ -9,16 +9,17 @@ import { firstLetterLowerCase } from "./lib/utils";
 
 const tips: Record<StrategyType, string[]> = {
     native: [
-        "Use platform-specific features to enhance user experience.",
-        "Optimize performance by leveraging native APIs.",
-        "Keep up with the latest updates and guidelines from the platform providers.",
+        "Take advantage of native capabilities to deliver the best user experience",
+        "Follow platform guidelines to ensure better user satisfaction",
     ],
-    crossPlatform: ["Ensure consistent UI/UX across all platforms.", "Test thoroughly on all target platforms to catch platform-specific issues."],
+    crossPlatform: [
+        "Ensure consistent UI/UX across all platforms to gain users trust",
+        "Test on real devices as emulators miss platform-specific bugs",
+    ],
     webApp: [
-        // Finished good example:
         "63% browse on mobile so focus on mobile first design",
-        "PWA and Service Worker for offline capabilities",
-        "Ensure fast load times and smooth performance.",
+        "Use Service Workers for offline capabilities",
+        "Fast load times can improve retention rates and SEO",
     ],
 };
 
