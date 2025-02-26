@@ -48,7 +48,7 @@ export const questions: Question[] = [
             },
         ],
         sources: [
-            { name: "Thesis Page 24-25", url: "Bachelor_Arbeit.pdf#page=30" },
+            { name: "Thesis Page 25-26", url: "Bachelor_Arbeit.pdf#page=34" },
             {
                 name: "Build Web App Prototype with AI",
                 url: "https://bolt.new/",
@@ -83,7 +83,7 @@ export const questions: Question[] = [
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
-        sources: [{ name: "Thesis Page 18-19", url: "Bachelor_Arbeit.pdf#page=25" }],
+        sources: [{ name: "Thesis Page 19-20", url: "Bachelor_Arbeit.pdf#page=28" }],
     },
     // CHECK
     {
@@ -109,7 +109,7 @@ export const questions: Question[] = [
                 scores: { native: 5, crossPlatform: 5, webApp: 5 },
             },
         ],
-        sources: [{ name: "Thesis Page 19-20", url: "Bachelor_Arbeit.pdf#page=26" }],
+        sources: [{ name: "Thesis Page 21", url: "Bachelor_Arbeit.pdf#page=30" }],
     },
     // CHECK
     {
@@ -137,7 +137,7 @@ export const questions: Question[] = [
         ],
         sources: [
             { name: "Cost Comparison and Case Studys", url: "https://feedbax.ai/industry-trends/native-app-vs-cross-plattform-app-vs-pwa#header-19" },
-            { name: "Thesis Page 24-25", url: "Bachelor_Arbeit.pdf#page=30" },
+            { name: "Thesis Page 25-26", url: "Bachelor_Arbeit.pdf#page=34" },
         ],
     },
     // CHECK
@@ -166,8 +166,8 @@ export const questions: Question[] = [
         ],
         sources: [
             {
-                name: "Thesis Page 15-16",
-                url: "Bachelor_Arbeit.pdf#page=22",
+                name: "Thesis Page 16-17",
+                url: "Bachelor_Arbeit.pdf#page=25",
             },
         ],
     },
@@ -233,7 +233,7 @@ export const questions: Question[] = [
         sources: [
             {
                 name: "Thesis Page 13",
-                url: "Bachelor_Arbeit.pdf#page=20",
+                url: "Bachelor_Arbeit.pdf#page=22",
             },
         ],
     },
@@ -263,8 +263,8 @@ export const questions: Question[] = [
         ],
         sources: [
             {
-                name: "Thesis Page 17",
-                url: "Bachelor_Arbeit.pdf#page=24",
+                name: "Thesis Page 17-18",
+                url: "Bachelor_Arbeit.pdf#page=26",
             },
         ],
     },
